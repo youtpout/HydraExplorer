@@ -9,5 +9,6 @@ namespace HydraExplorer.Services
     public interface IApiService
     {
         Task<Info> GetInfo();
+        Task<List<Block>> GetLastBlocks(int count);
     }
 }

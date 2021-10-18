@@ -30,5 +30,19 @@ namespace HydraExplorer.Services
                 throw new Exception("No response");
             }
         }
+
+        public async Task<List<Block>> GetLastBlocks(int count)
+        {
+            var url = urlApi + "recent-blocks?count=" + count;
+            HttpResponseMessage response = await client.GetAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsAsync<List<Block>>();
+            }
+            else
+            {
+                throw new Exception("No response");
+            }
+        }
     }
 }
