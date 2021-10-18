@@ -14,5 +14,17 @@ namespace HydraExplorer.Models
         public int transactionCount { get; set; }
         public string miner { get; set; }
         public string reward { get; set; }
+
+        public decimal rewardHydra
+        {
+            get
+            {
+                if (decimal.TryParse(reward, out decimal result))
+                {
+                    return result / 100000000;
+                }
+                return 0;
+            }
+        }
     }
 }

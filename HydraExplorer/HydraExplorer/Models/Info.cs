@@ -13,5 +13,13 @@ namespace HydraExplorer.Models
         public string gasPrice { get; set; }
         public string circulatingSupply { get; set; }
         public string APR { get; set; }
+
+        public decimal decimalStakeWeight
+        {
+            get
+            {
+                return netStakeWeight / 100000000;
+            }
+        }
     }
 }

@@ -29,6 +29,15 @@ namespace HydraExplorer.ViewModels
             set { SetProperty(ref blocks, value); }
         }
 
+        private List<Transaction> transactions;
+
+        public List<Transaction> Transactions
+        {
+            get { return transactions; }
+            set { SetProperty(ref transactions, value); }
+        }
+
+
 
         public Command LoadCommand { get; set; }
 
@@ -45,7 +54,8 @@ namespace HydraExplorer.ViewModels
         public async Task LoadDatas()
         {
             this.Info = await ApiService.GetInfo();
-            this.Blocks = await ApiService.GetLastBlocks(10);
+            this.Blocks = await ApiService.GetLastBlocks(3);
+            this.Transactions = await ApiService.GetLastTransactions(3);
         }
 
     }

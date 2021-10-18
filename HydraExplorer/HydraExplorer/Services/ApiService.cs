@@ -44,5 +44,19 @@ namespace HydraExplorer.Services
                 throw new Exception("No response");
             }
         }
+
+        public async Task<List<Transaction>> GetLastTransactions(int count)
+        {
+            var url = urlApi + "recent-txs?count=" + count;
+            HttpResponseMessage response = await client.GetAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsAsync<List<Transaction>>();
+            }
+            else
+            {
+                throw new Exception("No response");
+            }
+        }
     }
 }
