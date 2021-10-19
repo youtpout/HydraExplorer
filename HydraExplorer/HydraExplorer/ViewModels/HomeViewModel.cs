@@ -41,6 +41,7 @@ namespace HydraExplorer.ViewModels
 
         public Command LoadCommand { get; set; }
 
+        public Command<string> SearchCommand { get; set; }
 
         public HomeViewModel()
         {
@@ -49,6 +50,11 @@ namespace HydraExplorer.ViewModels
             {
                 await LoadDatas();
             });
+            SearchCommand = new Command<string>(async (query) =>
+              {
+                  var result = await ApiService.Search(query);
+                  Debug.WriteLine(result.type);
+              });
         }
 
         public async Task LoadDatas()

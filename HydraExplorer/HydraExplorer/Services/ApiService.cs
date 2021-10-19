@@ -58,5 +58,19 @@ namespace HydraExplorer.Services
                 throw new Exception("No response");
             }
         }
+
+        public async Task<Search> Search(string query)
+        {
+            var url = urlApi + "search?query=" + query;
+            HttpResponseMessage response = await client.GetAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsAsync<Search>();
+            }
+            else
+            {
+                throw new Exception("No response");
+            }
+        }
     }
 }
