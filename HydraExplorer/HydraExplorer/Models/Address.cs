@@ -17,6 +17,18 @@ namespace HydraExplorer.Models
         public int ranking { get; set; }
         public int transactionCount { get; set; }
         public int blocksMined { get; set; }
+
+        public decimal balanceHydra
+        {
+            get
+            {
+                if (decimal.TryParse(balance, out decimal result))
+                {
+                    return result / 100000000;
+                }
+                return 0;
+            }
+        }
     }
 
     public class Qrc20Balances

@@ -1,4 +1,5 @@
 ﻿using HydraExplorer.Models;
+using HydraExplorer.Views;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -54,6 +55,10 @@ namespace HydraExplorer.ViewModels
               {
                   var result = await ApiService.Search(query);
                   Debug.WriteLine(result.type);
+                  if (result.type == Search.typeAddress)
+                  {
+                      await Shell.Current.GoToAsync($"{nameof(AddressPage)}?Address={query}");
+                  }
               });
         }
 

@@ -72,5 +72,19 @@ namespace HydraExplorer.Services
                 throw new Exception("No response");
             }
         }
+
+        public async Task<Address> GetAddress(string address)
+        {
+            var url = urlApi + "address/" + address;
+            HttpResponseMessage response = await client.GetAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsAsync<Address>();
+            }
+            else
+            {
+                throw new Exception("No response");
+            }
+        }
     }
 }

@@ -12,5 +12,6 @@ namespace HydraExplorer.Services
         Task<List<Block>> GetLastBlocks(int count);
         Task<List<Transaction>> GetLastTransactions(int count);
         Task<Search> Search(string query);
+        Task<Address> GetAddress(string address);
     }
 }
