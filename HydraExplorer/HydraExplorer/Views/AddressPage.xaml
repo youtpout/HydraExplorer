@@ -3,16 +3,44 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  xmlns:vm="clr-namespace:HydraExplorer.ViewModels"
           xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+               xmlns:fontAwesome="clr-namespace:FontAwesome"
              x:Class="HydraExplorer.Views.AddressPage">
     <ContentPage.BindingContext>
         <vm:AddressViewModel />
     </ContentPage.BindingContext>
+    <Shell.TitleView>
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label VerticalTextAlignment="Center" Grid.Column="0"  TextColor="White" Text="Address" FontSize="Title"></Label>
+            <Button  VerticalOptions="Center" Command="{Binding FavoriteCommand}" FontFamily="{Binding FontFavorite}" Grid.Column="1" HorizontalOptions="End" FontSize="Title" Text="{x:Static fontAwesome:FontAwesomeIcons.Heart}"></Button>
+        </Grid>
+    </Shell.TitleView>
     <ContentPage.Content>
-        <StackLayout>
-            <Label>test</Label>
-            <Label TextColor="Black" FontSize="Medium" Text="{Binding AddressName}"></Label>
-            <StackLayout BindingContext="{Binding Address}">
-                <Label Text="{Binding balanceHydra,StringFormat='Balance {0} Hydra'}"></Label>
+        <StackLayout>                   
+            <Label Text="{Binding AddressName,StringFormat='Address {0}'}"></Label>
+            <StackLayout BindingContext="{Binding Address}">              
+                <Label Text="{Binding balanceHydra,StringFormat='Balance {0:n} Hydra'}"></Label>
+                <Label Text="{Binding ranking,StringFormat='Ranking {0}'}"></Label>
+                <Label Text="{Binding receivedHydra,StringFormat='Total Received {0:n} Hydra'}"></Label>
+                <Label Text="{Binding sentHydra,StringFormat='Total Sent {0:n} Hydra'}"></Label>
+                <StackLayout Orientation="Horizontal">
+                    <Label>Token Balances</Label>
+                    <StackLayout BindableLayout.ItemsSource="{Binding qrc20Balances}"  Margin="5,0,0,0">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding balanceToken,StringFormat='{0:n}'}"></Label>
+                                    <Label Text="{Binding symbol}"></Label>
+                                </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </StackLayout>
+                <Label Text="{Binding blocksMined,StringFormat='Blocks Mined {0}'}"></Label>
+                <Label Text="{Binding transactionCount,StringFormat='Transaction Count {0}'}"></Label>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

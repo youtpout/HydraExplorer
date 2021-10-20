@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
               xmlns:vm="clr-namespace:HydraExplorer.ViewModels"
           xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+  xmlns:fontAwesome="clr-namespace:FontAwesome"
                 x:Class="HydraExplorer.Views.HomePage"
                Title="{Binding Title}" >
 
@@ -27,8 +28,15 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <ScrollView  Margin="5">
-            <StackLayout >           
             <StackLayout >
+                <!--<Image>
+                    <Image.Source>
+                        <FontImageSource FontFamily="FA-Regular"
+                     Color="Black"
+                     Glyph="{x:Static fontAwesome:FontAwesomeIcons.ThumbsUp}"/>
+                    </Image.Source>
+                </Image>-->              
+                <StackLayout >
                 <Label TextColor="Black" FontSize="Medium">Network Statistics</Label>
                 <StackLayout BindingContext="{Binding Info}" Margin="5,0,0,0">                 
                     <Label Text="{Binding height, StringFormat='Blockchain Weight {0}'}" />

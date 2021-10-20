@@ -6,6 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Fonts\FA-Brands-Regular-400.otf" />
+    <None Remove="Resources\Fonts\FA-Regular-400.otf" />
+    <None Remove="Resources\Fonts\FA-Solid-900.otf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Fonts\FA-Brands-Regular-400.otf" />
+    <EmbeddedResource Include="Resources\Fonts\FA-Regular-400.otf" />
+    <EmbeddedResource Include="Resources\Fonts\FA-Solid-900.otf" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.2.0" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />  

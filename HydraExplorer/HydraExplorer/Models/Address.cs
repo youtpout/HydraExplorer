@@ -29,6 +29,30 @@ namespace HydraExplorer.Models
                 return 0;
             }
         }
+
+        public decimal receivedHydra
+        {
+            get
+            {
+                if (decimal.TryParse(totalReceived, out decimal result))
+                {
+                    return result / 100000000;
+                }
+                return 0;
+            }
+        }
+
+        public decimal sentHydra
+        {
+            get
+            {
+                if (decimal.TryParse(totalSent, out decimal result))
+                {
+                    return result / 100000000;
+                }
+                return 0;
+            }
+        }
     }
 
     public class Qrc20Balances
@@ -39,6 +63,17 @@ namespace HydraExplorer.Models
         public string symbol { get; set; }
         public int decimals { get; set; }
         public string balance { get; set; }
+        public decimal balanceToken
+        {
+            get
+            {
+                if (decimal.TryParse(balance, out decimal result))
+                {
+                    return result / (decimal)Math.Pow(10, decimals);
+                }
+                return 0;
+            }
+        }
     }
 
     public class Qrc721Balances

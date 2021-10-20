@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace HydraExplorer.ViewModels
 {
@@ -24,14 +26,55 @@ namespace HydraExplorer.ViewModels
             set { SetProperty(ref addressName, value); }
         }
 
+        private string fontFavorite;
 
+        public string FontFavorite
+        {
+            get { return fontFavorite; }
+            set { SetProperty(ref fontFavorite, value); }
+        }
 
-        public AddressViewModel() { }
+        public Command FavoriteCommand { get; set; }
+
+        public AddressViewModel()
+        {
+            IsFavorite();
+            FavoriteCommand = new Command(() =>
+            {
+                var item = Preferences.Get(this.AddressName, false);
+                if (item)
+                {
+                    RemoveFromFavorite();
+                }
+                else
+                {
+                    AddToFavorite();
+                }
+            });
+        }
 
         public async Task GetAddress(string adr)
         {
             this.AddressName = adr;
             this.Address = await ApiService.GetAddress(adr);
+        }
+
+        public void AddToFavorite()
+        {
+            Preferences.Set(this.AddressName, true);
+            IsFavorite();
+        }
+
+        public void RemoveFromFavorite()
+        {
+            Preferences.Set(this.AddressName, false);
+            IsFavorite();
+        }
+
+        void IsFavorite()
+        {
+            var item = Preferences.Get(this.AddressName, false);
+            this.FontFavorite = item ? "FA-Solid" : "FA-Regular";
         }
     }
 }
