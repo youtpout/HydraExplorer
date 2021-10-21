@@ -1,4 +1,5 @@
 ﻿using HydraExplorer.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,6 +11,8 @@ namespace HydraExplorer.ViewModels
 {
     public class AddressViewModel : BaseViewModel
     {
+        public const string keyAddresses = "Addresses";
+
         private Address address;
 
         public Address Address
@@ -38,7 +41,9 @@ namespace HydraExplorer.ViewModels
 
         public AddressViewModel()
         {
-            IsFavorite();
+            List<string> favorites = PropertiesGetValue<List<string>>(keyAddresses);
+            bool contains = favorites.Contains(AddressName);
+            FontFavorite = contains ? "FA-Solid" : "FA-Regular";
             FavoriteCommand = new Command(() =>
             {
                 var item = Preferences.Get(this.AddressName, false);
@@ -61,20 +66,18 @@ namespace HydraExplorer.ViewModels
 
         public void AddToFavorite()
         {
-            Preferences.Set(this.AddressName, true);
-            IsFavorite();
+            List<string> favorites = PropertiesGetValue<List<string>>(keyAddresses);
+            favorites.Add(AddressName);
+            PropertiesSetValue(keyAddresses, favorites);
+            FontFavorite = "FA-Solid";
         }
 
         public void RemoveFromFavorite()
         {
-            Preferences.Set(this.AddressName, false);
-            IsFavorite();
-        }
-
-        void IsFavorite()
-        {
-            var item = Preferences.Get(this.AddressName, false);
-            this.FontFavorite = item ? "FA-Solid" : "FA-Regular";
+            List<string> favorites = PropertiesGetValue<List<string>>(keyAddresses);
+            favorites.Remove(AddressName);
+            PropertiesSetValue(keyAddresses, favorites);
+            FontFavorite = "FA-Regular";
         }
     }
 }
