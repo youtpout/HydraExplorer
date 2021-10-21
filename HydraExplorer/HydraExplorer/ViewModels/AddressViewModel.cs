@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -11,7 +12,7 @@ namespace HydraExplorer.ViewModels
 {
     public class AddressViewModel : BaseViewModel
     {
-        public const string keyAddresses = "Addresses";
+
 
         private Address address;
 
@@ -41,13 +42,13 @@ namespace HydraExplorer.ViewModels
 
         public AddressViewModel()
         {
-            List<string> favorites = PropertiesGetValue<List<string>>(keyAddresses);
-            bool contains = favorites.Contains(AddressName);
-            FontFavorite = contains ? "FA-Solid" : "FA-Regular";
+            Title = "Addresse";
+          
             FavoriteCommand = new Command(() =>
             {
-                var item = Preferences.Get(this.AddressName, false);
-                if (item)
+                List<Favorite> favorites = PropertiesGetValue<List<Favorite>>(Favorite.keyFavorites);
+                bool contains = favorites.Exists(f => f.Value == this.AddressName);
+                if (contains)
                 {
                     RemoveFromFavorite();
                 }
@@ -55,6 +56,14 @@ namespace HydraExplorer.ViewModels
                 {
                     AddToFavorite();
                 }
+            });
+
+
+            LoadCommand = new Command(() =>
+            {
+                List<Favorite> favorites = PropertiesGetValue<List<Favorite>>(Favorite.keyFavorites);
+                bool contains = favorites.Exists(f => f.Value == this.AddressName);
+                FontFavorite = contains ? "FA-Solid" : "FA-Regular";
             });
         }
 
@@ -66,17 +75,22 @@ namespace HydraExplorer.ViewModels
 
         public void AddToFavorite()
         {
-            List<string> favorites = PropertiesGetValue<List<string>>(keyAddresses);
-            favorites.Add(AddressName);
-            PropertiesSetValue(keyAddresses, favorites);
+            List<Favorite> favorites = PropertiesGetValue<List<Favorite>>(Favorite.keyFavorites);
+            favorites.Add(new Favorite()
+            {
+                Value = this.AddressName,
+                SearchType = Search.typeAddress
+            });
+            PropertiesSetValue(Favorite.keyFavorites, favorites);
             FontFavorite = "FA-Solid";
         }
 
         public void RemoveFromFavorite()
         {
-            List<string> favorites = PropertiesGetValue<List<string>>(keyAddresses);
-            favorites.Remove(AddressName);
-            PropertiesSetValue(keyAddresses, favorites);
+            List<Favorite> favorites = PropertiesGetValue<List<Favorite>>(Favorite.keyFavorites);
+            var item = favorites.Single(f => f.Value == this.AddressName);
+            favorites.Remove(item);
+            PropertiesSetValue(Favorite.keyFavorites, favorites);
             FontFavorite = "FA-Regular";
         }
     }

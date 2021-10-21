@@ -11,6 +11,7 @@ namespace HydraExplorer.ViewModels
     public class BaseViewModel : INotifyPropertyChanged
     {
         public IApiService ApiService => DependencyService.Get<IApiService>();
+        public Command LoadCommand { get; set; }
 
         bool isBusy = false;
         public bool IsBusy

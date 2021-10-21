@@ -38,10 +38,6 @@ namespace HydraExplorer.ViewModels
             set { SetProperty(ref transactions, value); }
         }
 
-
-
-        public Command LoadCommand { get; set; }
-
         public Command<string> SearchCommand { get; set; }
 
         public HomeViewModel()

@@ -2,6 +2,8 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:HydraExplorer.Views"
+       
+               xmlns:fontAwesome="clr-namespace:FontAwesome"
        Title="HydraExplorer"
        x:Class="HydraExplorer.AppShell">
 
@@ -78,10 +80,26 @@
         FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
-    <FlyoutItem Title="Home" Icon="icon_about.png">
+    <FlyoutItem Title="Home" >
+        <FlyoutItem.Icon>
+            <FontImageSource FontFamily="FA-Solid" Color="{x:StaticResource Primary}"
+                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.Home}"/>
+        </FlyoutItem.Icon>
         <ShellContent Route="HomePage" ContentTemplate="{DataTemplate local:HomePage}" />
     </FlyoutItem>
-    <FlyoutItem Title="About" Icon="icon_about.png">
+    <FlyoutItem Title="Favorites">
+        <FlyoutItem.Icon>
+            <FontImageSource FontFamily="FA-Solid" Color="{x:StaticResource Primary}"
+                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.Heart}"/>
+        </FlyoutItem.Icon>
+        <ShellContent Route="Favorites" ContentTemplate="{DataTemplate local:FavoritePage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="About">
+        <FlyoutItem.Icon>
+            <FontImageSource FontFamily="FA-Solid" Color="{x:StaticResource Primary}"
+                            Glyph="{x:Static fontAwesome:FontAwesomeIcons.InfoCircle}"/>
+        </FlyoutItem.Icon>
         <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
     </FlyoutItem>
 
