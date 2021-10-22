@@ -132,13 +132,13 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\HydraExplorer\HydraExplorer.csproj">
-      <Project>{201C258F-F9BF-4800-AA1F-A8F2E0AF3D96}</Project>
+      <Project>{AD0DB1FC-0A5C-4852-8712-88052BAD10CF}</Project>
       <Name>HydraExplorer</Name>
     </ProjectReference>
   </ItemGroup>
