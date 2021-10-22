@@ -53,6 +53,18 @@ namespace HydraExplorer.Models
                 return 0;
             }
         }
+
+        public decimal stakingHydra
+        {
+            get
+            {
+                if (decimal.TryParse(staking, out decimal result))
+                {
+                    return result / 100000000;
+                }
+                return 0;
+            }
+        }
     }
 
     public class Qrc20Balances

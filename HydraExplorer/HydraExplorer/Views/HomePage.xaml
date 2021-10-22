@@ -55,8 +55,21 @@
                         <DataTemplate>
                             <StackLayout>
                                 <Label  Text="{Binding height, StringFormat='Block #{0}'}" />
-                                <Label  Text="{Binding miner,StringFormat='Mined by {0} '}" />
-                                <StackLayout Orientation="Horizontal">
+                                    <Grid >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0" VerticalOptions="Center"  Text="{Binding miner,StringFormat='Mined by {0} '}" />
+                                        <ImageButton Grid.Column="1"  HorizontalOptions="End" BackgroundColor="Transparent" Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},Path=BindingContext.AddressCommand}" CommandParameter="{Binding miner}">
+                                            <ImageButton.Source>
+                                                <FontImageSource FontFamily="FA-Solid" Glyph="{x:Static fontAwesome:FontAwesomeIcons.Eye}" Color="{x:StaticResource Primary}"/>
+                                                <!--Color="{AppThemeBinding Dark=White,
+                                                 Light=Black}"-->
+                                            </ImageButton.Source>
+                                        </ImageButton>
+                                    </Grid>
+                                    <StackLayout Orientation="Horizontal">
                                     <Label  Text="{Binding transactionCount,StringFormat='{0} transactions'}" />
                                     <Label  Text="{Binding interval,StringFormat='in {0} secs'}" />
                                 </StackLayout>

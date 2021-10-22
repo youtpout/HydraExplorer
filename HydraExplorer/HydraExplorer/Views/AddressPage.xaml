@@ -27,12 +27,13 @@
             <Label Text="{Binding AddressName,StringFormat='Address {0}'}"></Label>
             <StackLayout BindingContext="{Binding Address}">              
                 <Label Text="{Binding balanceHydra,StringFormat='Balance {0:n} Hydra'}"></Label>
+                <Label Text="{Binding stakingHydra,StringFormat='Staking {0:n} Hydra'}"></Label>
                 <Label Text="{Binding ranking,StringFormat='Ranking {0}'}"></Label>
                 <Label Text="{Binding receivedHydra,StringFormat='Total Received {0:n} Hydra'}"></Label>
                 <Label Text="{Binding sentHydra,StringFormat='Total Sent {0:n} Hydra'}"></Label>
                 <StackLayout Orientation="Horizontal">
                     <Label>Token Balances</Label>
-                    <StackLayout BindableLayout.ItemsSource="{Binding qrc20Balances}"  Margin="5,0,0,0">
+                    <StackLayout BindableLayout.ItemsSource="{Binding qrc20Balances}"  Margin="0,0,0,0">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout Orientation="Horizontal">

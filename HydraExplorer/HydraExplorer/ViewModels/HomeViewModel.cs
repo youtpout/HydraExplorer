@@ -39,6 +39,7 @@ namespace HydraExplorer.ViewModels
         }
 
         public Command<string> SearchCommand { get; set; }
+        public Command<string> AddressCommand { get; set; }
 
         public HomeViewModel()
         {
@@ -56,6 +57,11 @@ namespace HydraExplorer.ViewModels
                       await Shell.Current.GoToAsync($"{nameof(AddressPage)}?Address={query}");
                   }
               });
+
+            AddressCommand = new Command<string>(async (query) =>
+            {
+                await Shell.Current.GoToAsync($"{nameof(AddressPage)}?Address={query}");
+            });
         }
 
         public async Task LoadDatas()
