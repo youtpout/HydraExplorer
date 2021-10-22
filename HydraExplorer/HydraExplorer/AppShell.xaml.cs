@@ -2,13 +2,26 @@
 using HydraExplorer.Views;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 
 namespace HydraExplorer
 {
-    public partial class AppShell : Xamarin.Forms.Shell
+    public partial class AppShell : Shell
     {
-        
+        private string titleSelected;
+
+        public string TitleSelected
+        {
+            get { return titleSelected; }
+            set
+            {
+                titleSelected = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         public AppShell()
         {
@@ -26,7 +39,8 @@ namespace HydraExplorer
         protected override void OnNavigated(ShellNavigatedEventArgs args)
         {
             base.OnNavigated(args);
-          var t=  Current.CurrentItem.Title;
+            TitleSelected = Current.CurrentItem.Title;
         }
+
     }
 }

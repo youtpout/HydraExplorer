@@ -40,7 +40,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Helpers\" />
     <Folder Include="Resources\Images\" />
   </ItemGroup>
 </Project>

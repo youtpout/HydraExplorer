@@ -82,14 +82,14 @@
     -->
     <FlyoutItem Title="Home" >
         <FlyoutItem.Icon>
-            <FontImageSource FontFamily="FA-Solid" Color="{x:StaticResource Primary}"
+            <FontImageSource FontFamily="FA-Solid" Color="{Binding Source={RelativeSource AncestorType={x:Type Shell}},Path=TitleSelected,Converter={StaticResource SelectedColorConverter},ConverterParameter=Home}"
                             Glyph="{x:Static fontAwesome:FontAwesomeIcons.Home}"/>
         </FlyoutItem.Icon>
         <ShellContent Route="HomePage" ContentTemplate="{DataTemplate local:HomePage}" />
     </FlyoutItem>
     <FlyoutItem Title="Favorites">
         <FlyoutItem.Icon>
-            <FontImageSource FontFamily="FA-Solid" Color="{x:StaticResource Primary}"
+            <FontImageSource FontFamily="FA-Solid" Color="{Binding Source={RelativeSource AncestorType={x:Type Shell}},Path=TitleSelected,Converter={StaticResource SelectedColorConverter},ConverterParameter=Favorites}"
                             Glyph="{x:Static fontAwesome:FontAwesomeIcons.Heart}"/>
         </FlyoutItem.Icon>
         <ShellContent Route="Favorites" ContentTemplate="{DataTemplate local:FavoritePage}" />
@@ -97,7 +97,7 @@
 
     <FlyoutItem Title="About">
         <FlyoutItem.Icon>
-            <FontImageSource FontFamily="FA-Solid" Color="{x:StaticResource Primary}"
+            <FontImageSource FontFamily="FA-Solid" Color="{Binding Source={RelativeSource AncestorType={x:Type Shell}},Path=TitleSelected,Converter={StaticResource SelectedColorConverter},ConverterParameter=About}"
                             Glyph="{x:Static fontAwesome:FontAwesomeIcons.InfoCircle}"/>
         </FlyoutItem.Icon>
         <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
