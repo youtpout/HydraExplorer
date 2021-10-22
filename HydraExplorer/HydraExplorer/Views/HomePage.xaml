@@ -37,24 +37,30 @@
                      Color="Black"
                      Glyph="{x:Static fontAwesome:FontAwesomeIcons.ThumbsUp}"/>
                     </Image.Source>
-                </Image>-->              
+                </Image>-->
                 <StackLayout >
-                <Label TextColor="Black" FontSize="Medium">Network Statistics</Label>
-                <StackLayout BindingContext="{Binding Info}" Margin="5,0,0,0">                 
-                    <Label Text="{Binding height, StringFormat='Blockchain Weight {0}'}" />
-                    <Label Text="{Binding decimalStakeWeight, StringFormat='Network Weight {0:n}'}" />
-                    <Label Text="{Binding feeRate, StringFormat='Fee Rate {0} HYDRA/kB'}" />
-                    <Label Text="{Binding gasPrice, StringFormat='Gas Price {0} HYDRA'}" />      
-                    <Label Text="{Binding APR, StringFormat='APR {0} %'}" />
+                    <StackLayout Orientation="Horizontal">
+                        <Label TextColor="Black" VerticalOptions="Center" FontSize="Medium" FontFamily="FA-Solid" Text="{x:Static fontAwesome:FontAwesomeIcons.TachometerAlt}"></Label>
+                        <Label TextColor="Black" VerticalOptions="Center" FontSize="Medium">Network Statistics</Label>
+                    </StackLayout>
+                    <StackLayout BindingContext="{Binding Info}" Margin="5,0,0,0">
+                        <Label Text="{Binding height, StringFormat='Blockchain Weight {0}'}" />
+                        <Label Text="{Binding decimalStakeWeight, StringFormat='Network Weight {0:n}'}" />
+                        <Label Text="{Binding feeRate, StringFormat='Fee Rate {0} HYDRA/kB'}" />
+                        <Label Text="{Binding gasPrice, StringFormat='Gas Price {0} HYDRA'}" />
+                        <Label Text="{Binding APR, StringFormat='APR {0} %'}" />
+                    </StackLayout>
                 </StackLayout>
-            </StackLayout>
-            <StackLayout >
-                    <Label TextColor="Black" FontSize="Medium">Blocks</Label>
+                <StackLayout >
+                    <StackLayout Orientation="Horizontal">
+                        <Label TextColor="Black" VerticalOptions="Center" FontSize="Medium" FontFamily="FA-Solid" Text="{x:Static fontAwesome:FontAwesomeIcons.Cubes}"></Label>
+                        <Label TextColor="Black" VerticalOptions="Center" FontSize="Medium">Blocks</Label>
+                    </StackLayout>                 
                     <StackLayout BindableLayout.ItemsSource="{Binding Blocks}"  Margin="5,0,0,0">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout>
-                                <Label  Text="{Binding height, StringFormat='Block #{0}'}" />
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <Label  Text="{Binding height, StringFormat='Block #{0}'}" />
                                     <Grid >
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -70,17 +76,17 @@
                                         </ImageButton>
                                     </Grid>
                                     <StackLayout Orientation="Horizontal">
-                                    <Label  Text="{Binding transactionCount,StringFormat='{0} transactions'}" />
-                                    <Label  Text="{Binding interval,StringFormat='in {0} secs'}" />
-                                </StackLayout>
-                                <Label Text="{Binding rewardHydra,StringFormat='Block reward {0} HYDRA'}" />
-                                <BoxView HeightRequest="1"     BackgroundColor="LightGray"    VerticalOptions="End"/>
+                                        <Label  Text="{Binding transactionCount,StringFormat='{0} transactions'}" />
+                                        <Label  Text="{Binding interval,StringFormat='in {0} secs'}" />
+                                    </StackLayout>
+                                    <Label Text="{Binding rewardHydra,StringFormat='Block reward {0} HYDRA'}" />
+                                    <BoxView HeightRequest="1"     BackgroundColor="LightGray"    VerticalOptions="End"/>
 
-                            </StackLayout>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                </StackLayout>
-                <!--<CollectionView ItemsSource="{Binding Blocks}" >
+                                </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                    <!--<CollectionView ItemsSource="{Binding Blocks}" >
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
@@ -98,22 +104,25 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>-->
                 </StackLayout>
-            <StackLayout >
-                    <Label TextColor="Black" FontSize="Medium">Transactions</Label>
+                <StackLayout >
+                    <StackLayout Orientation="Horizontal">
+                        <Label TextColor="Black" VerticalOptions="Center" FontSize="Medium" FontFamily="FA-Solid" Text="{x:Static fontAwesome:FontAwesomeIcons.ListAlt}"></Label>
+                        <Label TextColor="Black" VerticalOptions="Center" FontSize="Medium">Transactions</Label>
+                    </StackLayout>
                     <StackLayout BindableLayout.ItemsSource="{Binding Transactions}"  Margin="5,0,0,0">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout>
-                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                    <Label  Text="{Binding cutId}" />
-                                    <Label HorizontalOptions="EndAndExpand"  Text="{Binding txHydra,StringFormat='{0:n2} HYDRA'}" />
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <Label  Text="{Binding cutId}" />
+                                        <Label HorizontalOptions="EndAndExpand"  Text="{Binding txHydra,StringFormat='{0:n2} HYDRA'}" />
+                                    </StackLayout>
+                                    <BoxView HeightRequest="1"     BackgroundColor="LightGray"   VerticalOptions="End"/>
                                 </StackLayout>
-                                <BoxView HeightRequest="1"     BackgroundColor="LightGray"   VerticalOptions="End"/>
-                            </StackLayout>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                </StackLayout>
-                <!--<CollectionView ItemsSource="{Binding Transactions}" >
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                    <!--<CollectionView ItemsSource="{Binding Transactions}" >
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
@@ -126,8 +135,8 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>-->
-        </StackLayout>
-        </StackLayout>
+                </StackLayout>
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
