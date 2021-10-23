@@ -69,7 +69,7 @@
                                         <Label Grid.Column="0" VerticalOptions="Center"  Text="{Binding miner,StringFormat='Mined by {0} '}" />
                                         <ImageButton Grid.Column="1"  HorizontalOptions="End" BackgroundColor="Transparent" Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},Path=BindingContext.AddressCommand}" CommandParameter="{Binding miner}">
                                             <ImageButton.Source>
-                                                <FontImageSource FontFamily="FA-Solid" Glyph="{x:Static fontAwesome:FontAwesomeIcons.Eye}" Color="{x:StaticResource Primary}"/>
+                                                <FontImageSource FontFamily="FA-Solid" Glyph="{x:Static fontAwesome:FontAwesomeIcons.Eye}" Color="Gray"  />
                                                 <!--Color="{AppThemeBinding Dark=White,
                                                  Light=Black}"-->
                                             </ImageButton.Source>

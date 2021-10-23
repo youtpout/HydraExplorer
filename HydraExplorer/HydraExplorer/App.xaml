@@ -9,6 +9,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="FontColor">Gray</Color>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">
@@ -28,7 +29,17 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
+            <Style x:Key="Title" TargetType="Label">
+                <Setter Property="TextColor" Value="Black"></Setter>
+                <Setter Property="FontSize" Value="Medium"></Setter>
+            </Style>
+
+            <Style  TargetType="Label">
+                <Setter Property="TextColor" Value="Gray"></Setter>
+                <Setter Property="FontSize" Value="Small"></Setter>
+            </Style>
             <helpers:SelectedColorConverter x:Key="SelectedColorConverter"></helpers:SelectedColorConverter>
-        </ResourceDictionary>        
+            <helpers:NullOrEmptyBooleanConverter x:Key="NullOrEmptyBooleanConverter"></helpers:NullOrEmptyBooleanConverter>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
