@@ -27,10 +27,9 @@ namespace HydraExplorer
         {
             InitializeComponent();
             this.BindingContext = this;
-            //Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
+            Routing.RegisterRoute(nameof(BlockPage), typeof(BlockPage));
             Routing.RegisterRoute(nameof(AddressPage), typeof(AddressPage));
             //Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
-            CurrentItem.CurrentItem = CurrentItem.Items[0];
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

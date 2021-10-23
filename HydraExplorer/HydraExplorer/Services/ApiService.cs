@@ -86,5 +86,19 @@ namespace HydraExplorer.Services
                 throw new Exception("No response");
             }
         }
+
+        public async Task<Block> GetBlock(string block)
+        {
+            var url = urlApi + "block/" + block;
+            HttpResponseMessage response = await client.GetAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsAsync<Block>();
+            }
+            else
+            {
+                throw new Exception("No response");
+            }
+        }
     }
 }

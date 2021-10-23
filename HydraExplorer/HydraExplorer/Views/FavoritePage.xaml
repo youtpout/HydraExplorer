@@ -13,13 +13,25 @@
         <xct:EventToCommandBehavior EventName="Appearing" Command="{Binding LoadCommand}"></xct:EventToCommandBehavior>
     </ContentPage.Behaviors>
     <ContentPage.Content>
-        <CollectionView Margin="5" x:Name="CollectionFavorites" ItemsSource="{Binding Favorites}"  SelectionMode="Single"  SelectionChangedCommand="{Binding SelectCommand}" SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference CollectionFavorites}}">
+        <CollectionView Margin="5" x:Name="CollectionFavorites" ItemsSource="{Binding Favorites}"  SelectionMode="None"  >
                     <CollectionView.ItemTemplate >
                         <DataTemplate>
                             <StackLayout >
                         <StackLayout Orientation="Horizontal" HeightRequest="40">
                             <Label  Text="{Binding SearchType}" VerticalOptions="Center" VerticalTextAlignment="Center" />
-                                <Label  Text="{Binding Value}" VerticalOptions="Center" />
+                                <Label   VerticalOptions="Center" >
+                                    <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Value}"
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                                                    <Span.GestureRecognizers>
+                                                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},Path=BindingContext.SelectCommand}" CommandParameter="{Binding}" />
+                                                    </Span.GestureRecognizers>
+                                                </Span>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
                           </StackLayout>
                                 <BoxView HeightRequest="1"     BackgroundColor="LightGray"    VerticalOptions="End"/>
                             </StackLayout>

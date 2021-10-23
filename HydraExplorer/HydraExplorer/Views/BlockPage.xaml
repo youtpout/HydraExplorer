@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+     xmlns:vm="clr-namespace:HydraExplorer.ViewModels"
+               xmlns:fontAwesome="clr-namespace:FontAwesome"
+               BackgroundColor="White"
+             Title="{Binding Title}"
+    x:Class="HydraExplorer.Views.BlockPage">
+    <ContentPage.BindingContext>
+        <vm:BlockViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Behaviors>
+        <xct:EventToCommandBehavior EventName="Appearing" Command="{Binding LoadCommand}"></xct:EventToCommandBehavior>
+    </ContentPage.Behaviors>
+    <Shell.TitleView>
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label VerticalTextAlignment="Center" Grid.Column="0"  TextColor="White" Text="{Binding Title}" FontSize="Title"></Label>
+            <Button  VerticalOptions="Center" Command="{Binding FavoriteCommand}" FontFamily="{Binding FontFavorite}" Grid.Column="1" HorizontalOptions="End" FontSize="Title" Text="{x:Static fontAwesome:FontAwesomeIcons.Heart}"></Button>
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout Margin="5">
+            <StackLayout BindingContext="{Binding Block}">
+                <Label Text="{Binding height,StringFormat='Block Height {0}'}"></Label>
+                <Label Text="{Binding hash,StringFormat='Block Hash {0}'}"></Label>
+                <Label Text="{Binding size,StringFormat='Block Size {0} bytes'}"></Label>
+                <Label Text="{Binding rewardHydra,StringFormat='Block Reward {0:n} Hydra'}"></Label>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

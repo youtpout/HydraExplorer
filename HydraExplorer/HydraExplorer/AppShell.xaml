@@ -81,7 +81,7 @@
         FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
-    <FlyoutItem Title="Home" >
+    <FlyoutItem Title="Home">
         <FlyoutItem.Icon>
             <FontImageSource FontFamily="FA-Solid" Color="{Binding Source={RelativeSource AncestorType={x:Type Shell}},Path=TitleSelected,Converter={StaticResource SelectedColorConverter},ConverterParameter=Home}"
                             Glyph="{x:Static fontAwesome:FontAwesomeIcons.Home}"/>
