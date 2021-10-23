@@ -4,6 +4,7 @@
               xmlns:vm="clr-namespace:HydraExplorer.ViewModels"
           xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
   xmlns:fontAwesome="clr-namespace:FontAwesome"
+             BackgroundColor="White"
              xmlns:helpers="clr-namespace:HydraExplorer.Helpers"
                 x:Class="HydraExplorer.Views.HomePage"
                Title="{Binding Title}" >
@@ -19,8 +20,6 @@
             <SearchBar x:Name="searchBar" SearchCommand="{Binding SearchCommand}" Placeholder="Address/Block..." SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"  Grid.Column="1" Margin="10,10,10,10" BackgroundColor="White"
                    HorizontalOptions="EndAndExpand"/>
         </Grid>
-
-
     </Shell.TitleView>
     <ContentPage.Behaviors>
         <xct:EventToCommandBehavior EventName="Appearing" Command="{Binding LoadCommand}"></xct:EventToCommandBehavior>

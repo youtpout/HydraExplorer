@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace HydraExplorer.Views
@@ -17,6 +19,7 @@ namespace HydraExplorer.Views
         {
             InitializeComponent();
 
+            searchBar.On<iOS>().SetSearchBarStyle(UISearchBarStyle.Minimal).SetShadowColor(Color.White);
         }
     }
 }

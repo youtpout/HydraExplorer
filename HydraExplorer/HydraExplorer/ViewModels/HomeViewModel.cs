@@ -38,8 +38,20 @@ namespace HydraExplorer.ViewModels
             set { SetProperty(ref transactions, value); }
         }
 
+        private bool visibleSearch;
+
+        public bool VisibleSearch
+        {
+            get { return visibleSearch; }
+            set
+            {
+                SetProperty(ref visibleSearch, value);
+            }
+        }
+
         public Command<string> SearchCommand { get; set; }
         public Command<string> AddressCommand { get; set; }
+        public Command ToggleSearchCommand { get; set; }
 
         public HomeViewModel()
         {
@@ -62,6 +74,11 @@ namespace HydraExplorer.ViewModels
             {
                 await Shell.Current.GoToAsync($"{nameof(AddressPage)}?Address={query}");
             });
+
+            ToggleSearchCommand = new Command(() =>
+              {
+                  VisibleSearch = !VisibleSearch;
+              });
         }
 
         public async Task LoadDatas()

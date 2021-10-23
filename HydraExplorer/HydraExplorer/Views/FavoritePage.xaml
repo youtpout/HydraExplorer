@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:HydraExplorer.ViewModels"
              Title="{Binding Title}"
+               BackgroundColor="White"
                xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="HydraExplorer.Views.FavoritePage">
     <ContentPage.BindingContext>
@@ -16,9 +17,9 @@
                     <CollectionView.ItemTemplate >
                         <DataTemplate>
                             <StackLayout >
-                        <StackLayout Orientation="Horizontal">
-                            <Label  Text="{Binding SearchType}" />
-                                <Label  Text="{Binding Value}" />
+                        <StackLayout Orientation="Horizontal" HeightRequest="40">
+                            <Label  Text="{Binding SearchType}" VerticalOptions="Center" VerticalTextAlignment="Center" />
+                                <Label  Text="{Binding Value}" VerticalOptions="Center" />
                           </StackLayout>
                                 <BoxView HeightRequest="1"     BackgroundColor="LightGray"    VerticalOptions="End"/>
                             </StackLayout>

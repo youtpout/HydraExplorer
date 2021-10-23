@@ -4,6 +4,7 @@
                  xmlns:vm="clr-namespace:HydraExplorer.ViewModels"
           xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
                xmlns:fontAwesome="clr-namespace:FontAwesome"
+               BackgroundColor="White"
              Title="{Binding Title}"
              x:Class="HydraExplorer.Views.AddressPage">
     <ContentPage.BindingContext>

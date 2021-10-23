@@ -2,9 +2,10 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:HydraExplorer.Views"
-       
+       FlyoutBackgroundColor="White"
                xmlns:fontAwesome="clr-namespace:FontAwesome"
        Title="HydraExplorer"
+       BackgroundColor="White"
        x:Class="HydraExplorer.AppShell">
 
     <!--

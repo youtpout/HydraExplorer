@@ -10,6 +10,16 @@
         <ResourceDictionary>
             <Color x:Key="Primary">#2196F3</Color>
             <Color x:Key="FontColor">Gray</Color>
+
+            <Style TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="White"></Setter>
+            </Style>
+              <Style TargetType="Page">
+                <Setter Property="BackgroundColor" Value="White"></Setter>
+            </Style>
+              <Style TargetType="FlyoutPage">
+                <Setter Property="BackgroundColor" Value="White"></Setter>
+            </Style>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">
