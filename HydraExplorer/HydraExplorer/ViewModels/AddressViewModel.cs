@@ -40,10 +40,10 @@ namespace HydraExplorer.ViewModels
 
         public Command FavoriteCommand { get; set; }
 
-        public AddressViewModel()
+        public AddressViewModel() : base()
         {
             Title = "Addresse";
-          
+
             FavoriteCommand = new Command(() =>
             {
                 List<Favorite> favorites = PropertiesGetValue<List<Favorite>>(Favorite.keyFavorites);

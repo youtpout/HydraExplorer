@@ -8,8 +8,9 @@ namespace HydraExplorer.Services
 {
     public interface IApiService
     {
+        event EventHandler<bool> Loading;
         Task<Info> GetInfo();
-        Task<List<Block>> GetLastBlocks(int count);
+        Task<List<BlockInfo>> GetLastBlocks(int count);
         Task<List<Transaction>> GetLastTransactions(int count);
         Task<Search> Search(string query);
         Task<Address> GetAddress(string address);

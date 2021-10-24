@@ -1,9 +1,11 @@
 ﻿using HydraExplorer.Models;
 using HydraExplorer.Services;
+using HydraExplorer.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace HydraExplorer.ViewModels
@@ -25,6 +27,16 @@ namespace HydraExplorer.ViewModels
         {
             get { return title; }
             set { SetProperty(ref title, value); }
+        }
+
+        public BaseViewModel()
+        {
+            this.ApiService.Loading += ApiService_Loading;
+        }
+
+        private void ApiService_Loading(object sender, bool e)
+        {
+            IsBusy = e;
         }
 
         protected bool SetProperty<T>(ref T backingStore, T value,
@@ -95,6 +107,20 @@ namespace HydraExplorer.ViewModels
                 }
             }
             return new T();
+        }
+
+        protected async Task NavigateTo(string searchType, string value)
+        {
+            if (searchType == Search.typeAddress)
+            {
+                await Shell.Current.GoToAsync($"{nameof(AddressPage)}?Address={value}");
+            }
+            else if (searchType == Search.typeBlock)
+            {
+                await Shell.Current.GoToAsync($"{nameof(BlockPage)}?Block={value}");
+            }
+
+            await Shell.Current.DisplayAlert("Search", "Not supported for the moment", "OK");
         }
 
 

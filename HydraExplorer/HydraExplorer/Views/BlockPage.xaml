@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
      xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
      xmlns:vm="clr-namespace:HydraExplorer.ViewModels"
+         xmlns:helpers="clr-namespace:HydraExplorer.Helpers"
                xmlns:fontAwesome="clr-namespace:FontAwesome"
                BackgroundColor="White"
              Title="{Binding Title}"
@@ -26,11 +27,41 @@
     </Shell.TitleView>
     <ContentPage.Content>
         <StackLayout Margin="5">
+            <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="True" Color="{StaticResource Primary}" />
             <StackLayout BindingContext="{Binding Block}">
                 <Label Text="{Binding height,StringFormat='Block Height {0}'}"></Label>
                 <Label Text="{Binding hash,StringFormat='Block Hash {0}'}"></Label>
                 <Label Text="{Binding size,StringFormat='Block Size {0} bytes'}"></Label>
+                <Label Text="{Binding weight,StringFormat='Block Weight {0} bytes'}"></Label>
+                <Label Text="{Binding Date,StringFormat='Timestamp {0}'}"></Label>
                 <Label Text="{Binding rewardHydra,StringFormat='Block Reward {0:n} Hydra'}"></Label>
+                <Label Text="{Binding difficulty,StringFormat='Difficulty {0}'}"></Label>
+                <Label Text="{Binding merkleRoot,StringFormat='Merkle Root {0}'}"></Label>
+                <Label Text="{Binding mi,StringFormat='Difficulty {0}'}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Mined By " />
+                            <helpers:HyperlinkSpan  Text="{Binding miner}"  Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},Path=BindingContext.AddressCommand}" CommandParameter="{Binding miner}"> </helpers:HyperlinkSpan>                           
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="{Binding transactionCount,StringFormat='Transactions {0}'}"></Label>
+                <Label IsVisible="{Binding prevHash,Converter={StaticResource NullOrEmptyBooleanConverter},ConverterParameter='0000000000000000000000000000000000000000000000000000000000000000'}" >
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Previous Block " />
+                            <helpers:HyperlinkSpan  Text="{Binding prevHash}"  Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},Path=BindingContext.PreviousBlockCommand}" ></helpers:HyperlinkSpan>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label  IsVisible="{Binding nextHash,Converter={StaticResource NullOrEmptyBooleanConverter}}" >
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Next Block " />
+                            <helpers:HyperlinkSpan  Text="{Binding nextHash}"  Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},Path=BindingContext.NextBlockCommand}"></helpers:HyperlinkSpan>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

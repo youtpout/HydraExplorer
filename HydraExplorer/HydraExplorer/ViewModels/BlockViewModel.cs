@@ -39,11 +39,14 @@ namespace HydraExplorer.ViewModels
         }
 
         public Command FavoriteCommand { get; set; }
+        public Command<string> AddressCommand { get; set; }
+        public Command PreviousBlockCommand { get; set; }
+        public Command NextBlockCommand { get; set; }
 
-        public BlockViewModel()
+        public BlockViewModel():base()
         {
             Title = "Block";
-          
+
             FavoriteCommand = new Command(() =>
             {
                 List<Favorite> favorites = PropertiesGetValue<List<Favorite>>(Favorite.keyFavorites);
@@ -64,6 +67,21 @@ namespace HydraExplorer.ViewModels
                 List<Favorite> favorites = PropertiesGetValue<List<Favorite>>(Favorite.keyFavorites);
                 bool contains = favorites.Exists(f => f.Value == this.BlockName);
                 FontFavorite = contains ? "FA-Solid" : "FA-Regular";
+            });
+
+            AddressCommand = new Command<string>(async (query) =>
+            {
+                await NavigateTo(Search.typeAddress, query);
+            });
+
+            PreviousBlockCommand = new Command(async () =>
+            {
+                await GetBlock((Block.height - 1).ToString());
+            });
+
+            NextBlockCommand = new Command(async () =>
+            {
+                await GetBlock((Block.height + 1).ToString());
             });
         }
 

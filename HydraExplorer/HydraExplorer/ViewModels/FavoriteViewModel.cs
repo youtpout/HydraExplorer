@@ -28,7 +28,7 @@ namespace HydraExplorer.ViewModels
 
 
 
-        public FavoriteViewModel()
+        public FavoriteViewModel() : base()
         {
             Title = "Favorites";
             Favorites = new ObservableCollection<Favorite>();
@@ -36,9 +36,9 @@ namespace HydraExplorer.ViewModels
             SelectCommand = new Command<object>(async (item) =>
               {
                   Favorite fav = item as Favorite;
-                  if (fav?.SearchType == Search.typeAddress)
+                  if (fav != null)
                   {
-                      await Shell.Current.GoToAsync($"{nameof(AddressPage)}?Address={fav.Value}");
+                      await NavigateTo(fav.SearchType, fav.Value);
                   }
               });
 

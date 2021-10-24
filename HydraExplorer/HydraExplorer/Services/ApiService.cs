@@ -12,6 +12,9 @@ namespace HydraExplorer.Services
         HttpClient client;
 
         string urlApi = "https://explorer.hydrachain.org/api/";
+
+        public event EventHandler<bool> Loading;
+
         public ApiService()
         {
             client = new HttpClient();
@@ -19,86 +22,59 @@ namespace HydraExplorer.Services
 
         public async Task<Info> GetInfo()
         {
-            var url = urlApi + "info";
-            HttpResponseMessage response = await client.GetAsync(url);
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadAsAsync<Info>();
-            }
-            else
-            {
-                throw new Exception("No response");
-            }
+            return await GetCall<Info>("info");
         }
 
-        public async Task<List<Block>> GetLastBlocks(int count)
+        public async Task<List<BlockInfo>> GetLastBlocks(int count)
         {
-            var url = urlApi + "recent-blocks?count=" + count;
-            HttpResponseMessage response = await client.GetAsync(url);
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadAsAsync<List<Block>>();
-            }
-            else
-            {
-                throw new Exception("No response");
-            }
+            return await GetCall<List<BlockInfo>>($"recent-blocks?count={count}");
         }
 
         public async Task<List<Transaction>> GetLastTransactions(int count)
         {
-            var url = urlApi + "recent-txs?count=" + count;
-            HttpResponseMessage response = await client.GetAsync(url);
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadAsAsync<List<Transaction>>();
-            }
-            else
-            {
-                throw new Exception("No response");
-            }
+            return await GetCall<List<Transaction>>($"recent-txs?count={count}");
         }
 
         public async Task<Search> Search(string query)
         {
-            var url = urlApi + "search?query=" + query;
-            HttpResponseMessage response = await client.GetAsync(url);
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadAsAsync<Search>();
-            }
-            else
-            {
-                throw new Exception("No response");
-            }
+            return await GetCall<Search>($"search?query={query}");
         }
 
         public async Task<Address> GetAddress(string address)
         {
-            var url = urlApi + "address/" + address;
-            HttpResponseMessage response = await client.GetAsync(url);
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadAsAsync<Address>();
-            }
-            else
-            {
-                throw new Exception("No response");
-            }
+            return await GetCall<Address>($"address/{address}");
         }
 
         public async Task<Block> GetBlock(string block)
         {
-            var url = urlApi + "block/" + block;
+            return await GetCall<Block>($"block/{block}");
+        }
+
+        private async Task<T> GetCall<T>(string getUrl)
+        {
+            this.ApiCalling();
+            var url = $"{urlApi}{getUrl}";
             HttpResponseMessage response = await client.GetAsync(url);
             if (response.IsSuccessStatusCode)
             {
-                return await response.Content.ReadAsAsync<Block>();
+                this.ApiCalled();
+                return await response.Content.ReadAsAsync<T>();
             }
             else
             {
-                throw new Exception("No response");
+                this.ApiCalled();
+                throw new Exception(response.ReasonPhrase);
             }
+        }
+
+        private void ApiCalling()
+        {
+            if (Loading != null) { Loading(this, true); }
+        }
+
+        private void ApiCalled()
+        {
+            if (Loading != null) { Loading(this, false); }
         }
     }
 }

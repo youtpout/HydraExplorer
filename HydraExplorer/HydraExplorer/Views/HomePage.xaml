@@ -10,15 +10,8 @@
                Title="{Binding Title}" >
 
     <Shell.TitleView>
-        <Grid >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <!--<Image Source="{helpers:ImageResource logo-hydra.png}" Grid.Column="0"></Image>-->
-            <Label Grid.Column="0" VerticalTextAlignment="Center" FontFamily="FA-Solid" TextColor="White" Text="{x:Static fontAwesome:FontAwesomeIcons.Home}" FontSize="Title"></Label>
-            <SearchBar x:Name="searchBar" SearchCommand="{Binding SearchCommand}" Placeholder="Address/Block..." SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"  Grid.Column="1" Margin="10,10,10,10" BackgroundColor="White"
-                   HorizontalOptions="EndAndExpand"/>
+        <Grid Padding="5" >
+            <SearchBar x:Name="searchBar"  SearchCommand="{Binding SearchCommand}" Placeholder="Address/Block..." SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"  BackgroundColor="White"                 />
         </Grid>
     </Shell.TitleView>
     <ContentPage.Behaviors>
@@ -29,18 +22,12 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <ScrollView  Margin="5">
+            <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="True" Color="{StaticResource Primary}" />
             <StackLayout >
-                <!--<Image>
-                    <Image.Source>
-                        <FontImageSource FontFamily="FA-Regular"
-                     Color="Black"
-                     Glyph="{x:Static fontAwesome:FontAwesomeIcons.ThumbsUp}"/>
-                    </Image.Source>
-                </Image>-->
                 <StackLayout >
                     <StackLayout Orientation="Horizontal">
-                        <Label TextColor="Black" VerticalOptions="Center" FontSize="Medium" FontFamily="FA-Solid" Text="{x:Static fontAwesome:FontAwesomeIcons.TachometerAlt}"></Label>
-                        <Label TextColor="Black" VerticalOptions="Center" FontSize="Medium">Network Statistics</Label>
+                        <Label Style="{StaticResource Title}" FontFamily="FA-Solid" Text="{x:Static fontAwesome:FontAwesomeIcons.TachometerAlt}"></Label>
+                        <Label Style="{StaticResource Title}" >Network Statistics</Label>
                     </StackLayout>
                     <StackLayout BindingContext="{Binding Info}" Margin="5,0,0,0">
                         <Label Text="{Binding height, StringFormat='Blockchain Weight {0}'}" ></Label>
@@ -52,8 +39,8 @@
                 </StackLayout>
                 <StackLayout >
                     <StackLayout Orientation="Horizontal">
-                        <Label TextColor="Black" VerticalOptions="Center" FontSize="Medium" FontFamily="FA-Solid" Text="{x:Static fontAwesome:FontAwesomeIcons.Cubes}"></Label>
-                        <Label TextColor="Black" VerticalOptions="Center" FontSize="Medium">Blocks</Label>
+                        <Label  Style="{StaticResource Title}"  FontFamily="FA-Solid" Text="{x:Static fontAwesome:FontAwesomeIcons.Cubes}"></Label>
+                        <Label  Style="{StaticResource Title}" >Blocks</Label>
                     </StackLayout>
                     <StackLayout BindableLayout.ItemsSource="{Binding Blocks}"  Margin="5,0,0,0">
                         <BindableLayout.ItemTemplate>
@@ -104,28 +91,11 @@
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
                     </StackLayout>
-                    <!--<CollectionView ItemsSource="{Binding Blocks}" >
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout>
-                                <Label  Text="{Binding height, StringFormat='Block #{0}'}" />
-                                <Label  Text="{Binding miner,StringFormat='Mined by {0} '}" />
-                                <StackLayout Orientation="Horizontal">
-                                    <Label  Text="{Binding transactionCount,StringFormat='{0} transactions'}" />
-                                    <Label  Text="{Binding interval,StringFormat='in {0} secs'}" />
-                                </StackLayout>
-                                <Label Text="{Binding rewardHydra,StringFormat='Block reward {0} HYDRA'}" />
-                                <BoxView HeightRequest="1"     BackgroundColor="LightGray"    VerticalOptions="End"/>
-
-                            </StackLayout>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>-->
                 </StackLayout>
                 <StackLayout >
                     <StackLayout Orientation="Horizontal">
-                        <Label TextColor="Black" VerticalOptions="Center" FontSize="Medium" FontFamily="FA-Solid" Text="{x:Static fontAwesome:FontAwesomeIcons.ListAlt}"></Label>
-                        <Label TextColor="Black" VerticalOptions="Center" FontSize="Medium">Transactions</Label>
+                        <Label  Style="{StaticResource Title}" FontFamily="FA-Solid" Text="{x:Static fontAwesome:FontAwesomeIcons.ListAlt}"></Label>
+                        <Label  Style="{StaticResource Title}" >Transactions</Label>
                     </StackLayout>
                     <StackLayout BindableLayout.ItemsSource="{Binding Transactions}"  Margin="5,0,0,0">
                         <BindableLayout.ItemTemplate>
@@ -140,19 +110,6 @@
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
                     </StackLayout>
-                    <!--<CollectionView ItemsSource="{Binding Transactions}" >
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                <Label  Text="{Binding cutId}" />
-                                <Label HorizontalOptions="EndAndExpand"  Text="{Binding txHydra,StringFormat='{0} HYDRA'}" />                               
-                            </StackLayout>
-                                <BoxView HeightRequest="1"     BackgroundColor="LightGray"   VerticalOptions="End"/>
-                            </StackLayout>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>-->
                 </StackLayout>
             </StackLayout>
         </ScrollView>

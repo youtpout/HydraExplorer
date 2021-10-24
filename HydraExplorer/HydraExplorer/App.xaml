@@ -42,6 +42,7 @@
             <Style x:Key="Title" TargetType="Label">
                 <Setter Property="TextColor" Value="Black"></Setter>
                 <Setter Property="FontSize" Value="Medium"></Setter>
+                <Setter Property="VerticalOptions" Value="Center"></Setter>
             </Style>
 
             <Style  TargetType="Label">

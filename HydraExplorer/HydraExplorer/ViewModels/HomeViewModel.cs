@@ -22,9 +22,9 @@ namespace HydraExplorer.ViewModels
             }
         }
 
-        private List<Block> blocks;
+        private List<BlockInfo> blocks;
 
-        public List<Block> Blocks
+        public List<BlockInfo> Blocks
         {
             get { return blocks; }
             set { SetProperty(ref blocks, value); }
@@ -54,7 +54,7 @@ namespace HydraExplorer.ViewModels
         public Command<int> BlockCommand { get; set; }
         public Command ToggleSearchCommand { get; set; }
 
-        public HomeViewModel()
+        public HomeViewModel() : base()
         {
             Title = "Home";
             LoadCommand = new Command(async () =>
@@ -63,15 +63,21 @@ namespace HydraExplorer.ViewModels
             });
             SearchCommand = new Command<string>(async (query) =>
               {
-                  var result = await ApiService.Search(query);
-                  Debug.WriteLine(result.type);
-                  if (result.type == Search.typeAddress)
+                  try
                   {
-                      await Shell.Current.GoToAsync($"{nameof(AddressPage)}?Address={query}");
+                      var result = await ApiService.Search(query);
+                      if (!string.IsNullOrEmpty(result?.type))
+                      {
+                          await NavigateTo(result.type, query);
+                      }
+                      else
+                      {
+                          await Shell.Current.DisplayAlert("Search", "Not found", "OK");
+                      }
                   }
-                  else if (result.type == Search.typeBlock)
+                  catch (Exception ex)
                   {
-                      await Shell.Current.GoToAsync($"{nameof(BlockPage)}?Block={query}");
+                      await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
                   }
               });
 

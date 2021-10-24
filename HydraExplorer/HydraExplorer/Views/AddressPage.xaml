@@ -25,6 +25,7 @@
     </Shell.TitleView>
     <ContentPage.Content>
         <StackLayout Margin="5">
+            <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="True" Color="{StaticResource Primary}" />
             <Label Text="{Binding AddressName,StringFormat='Address {0}'}"></Label>
             <StackLayout BindingContext="{Binding Address}">
                 <Label Text="{Binding balanceHydra,StringFormat='Balance {0:n} Hydra'}"></Label>
