@@ -21,9 +21,9 @@
         <vm:HomeViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <ScrollView  Margin="5">
-            <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="True" Color="{StaticResource Primary}" />
+        <ScrollView  Margin="5">           
             <StackLayout >
+                <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="True" Color="{StaticResource Primary}" />
                 <StackLayout >
                     <StackLayout Orientation="Horizontal">
                         <Label Style="{StaticResource Title}" FontFamily="FA-Solid" Text="{x:Static fontAwesome:FontAwesomeIcons.TachometerAlt}"></Label>
