@@ -119,8 +119,10 @@ namespace HydraExplorer.ViewModels
             {
                 await Shell.Current.GoToAsync($"{nameof(BlockPage)}?Block={value}");
             }
-
-            await Shell.Current.DisplayAlert("Search", "Not supported for the moment", "OK");
+            else
+            {
+                await Shell.Current.DisplayAlert("Navigation", "Not supported for the moment", "OK");
+            }
         }
 
 
