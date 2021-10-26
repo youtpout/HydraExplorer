@@ -52,6 +52,7 @@ namespace HydraExplorer.ViewModels
         public Command<string> SearchCommand { get; set; }
         public Command<string> AddressCommand { get; set; }
         public Command<int> BlockCommand { get; set; }
+        public Command<string> TxCommand { get; set; }
         public Command ToggleSearchCommand { get; set; }
 
         public HomeViewModel() : base()
@@ -83,12 +84,17 @@ namespace HydraExplorer.ViewModels
 
             AddressCommand = new Command<string>(async (query) =>
             {
-                await Shell.Current.GoToAsync($"{nameof(AddressPage)}?Address={query}");
+                await NavigateTo(Search.typeAddress, query);
             });
 
             BlockCommand = new Command<int>(async (query) =>
             {
-                await Shell.Current.GoToAsync($"{nameof(BlockPage)}?Block={query}");
+                await NavigateTo(Search.typeBlock, query.ToString());
+            });
+
+            TxCommand = new Command<string>(async (query) =>
+            {
+                await NavigateTo(Search.typeTransaction, query);
             });
 
             ToggleSearchCommand = new Command(() =>

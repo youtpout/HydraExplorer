@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HydraExplorer.Views.TransactionPage"   xmlns:vm="clr-namespace:HydraExplorer.ViewModels"
+          xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+              xmlns:helpers="clr-namespace:HydraExplorer.Helpers"
+               xmlns:fontAwesome="clr-namespace:FontAwesome"
+               BackgroundColor="White"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <vm:TransactionViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Behaviors>
+        <xct:EventToCommandBehavior EventName="Appearing" Command="{Binding LoadCommand}"></xct:EventToCommandBehavior>
+    </ContentPage.Behaviors>
+    <Shell.TitleView>
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label VerticalTextAlignment="Center" Grid.Column="0"  TextColor="White" Text="{Binding Title}" FontSize="Title"></Label>
+            <Button  VerticalOptions="Center" Command="{Binding FavoriteCommand}" FontFamily="{Binding FontFavorite}" Grid.Column="1" HorizontalOptions="End" FontSize="Title" Text="{x:Static fontAwesome:FontAwesomeIcons.Heart}"></Button>
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout Margin="5">
+            <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="True" Color="{StaticResource Primary}" />
+            <StackLayout BindingContext="{Binding Transaction}">
+                <Label Text="{Binding id,StringFormat='Transaction ID {0}'}"></Label>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Included In Block "></Span>
+                            <helpers:HyperlinkSpan Text="{Binding blockHeight}"  Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},Path=BindingContext.BlockCommand}" CommandParameter="{Binding blockHeight}"></helpers:HyperlinkSpan>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="{Binding size,StringFormat='Transaction Size {0} bytes'}"></Label>
+                <Label Text="{Binding Date,StringFormat='Timestamp {0}'}"></Label>
+                <Label Text="{Binding confirmations,StringFormat='Confirmations {0}'}"></Label>
+                <Label Text="{Binding feesHydra,StringFormat='Transaction Fee {0:n} Hydra'}"></Label>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

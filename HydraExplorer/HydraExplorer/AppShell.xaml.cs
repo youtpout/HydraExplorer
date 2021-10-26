@@ -29,6 +29,7 @@ namespace HydraExplorer
             this.BindingContext = this;
             Routing.RegisterRoute(nameof(BlockPage), typeof(BlockPage));
             Routing.RegisterRoute(nameof(AddressPage), typeof(AddressPage));
+            Routing.RegisterRoute(nameof(TransactionPage), typeof(TransactionPage));
             //Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
         }
 

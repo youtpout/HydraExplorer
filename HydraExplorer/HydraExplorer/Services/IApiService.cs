@@ -15,5 +15,6 @@ namespace HydraExplorer.Services
         Task<Search> Search(string query);
         Task<Address> GetAddress(string address);
         Task<Block> GetBlock(string block);
+        Task<Transaction> GetTransaction(string tx);
     }
 }

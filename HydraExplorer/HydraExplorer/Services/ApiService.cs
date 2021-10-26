@@ -76,5 +76,10 @@ namespace HydraExplorer.Services
         {
             if (Loading != null) { Loading(this, false); }
         }
+
+        public async Task<Transaction> GetTransaction(string tx)
+        {
+            return await GetCall<Transaction>($"tx/{tx}");
+        }
     }
 }

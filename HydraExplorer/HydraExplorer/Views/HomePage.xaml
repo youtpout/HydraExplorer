@@ -102,7 +102,14 @@
                             <DataTemplate>
                                 <StackLayout>
                                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                        <Label  Text="{Binding cutId}" />
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <helpers:HyperlinkSpan Text="{Binding cutId}"  Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},Path=BindingContext.TxCommand}" CommandParameter="{Binding id}"></helpers:HyperlinkSpan>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
                                         <Label HorizontalOptions="EndAndExpand"  Text="{Binding txHydra,StringFormat='{0:n2} HYDRA'}" />
                                     </StackLayout>
                                     <BoxView HeightRequest="1"     BackgroundColor="LightGray"   VerticalOptions="End"/>
