@@ -46,15 +46,15 @@
                     </Label.FormattedText>
                 </Label>
                 <Label Text="{Binding transactionCount,StringFormat='Transactions {0}'}"></Label>
-                <Label IsVisible="{Binding prevHash,Converter={StaticResource NullOrEmptyBooleanConverter},ConverterParameter='0000000000000000000000000000000000000000000000000000000000000000'}" >
+                <Label IsVisible="{Binding prevHash,Converter={StaticResource NullOrEmptyBooleanConverter},ConverterParameter='0000000000000000000000000000000000000000000000000000000000000000'}" LineBreakMode="TailTruncation">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="Previous Block " />
-                            <helpers:HyperlinkSpan  Text="{Binding prevHash}"  Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},Path=BindingContext.PreviousBlockCommand}" ></helpers:HyperlinkSpan>
+                            <helpers:HyperlinkSpan  Text="{Binding prevHash}" Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},Path=BindingContext.PreviousBlockCommand}" ></helpers:HyperlinkSpan>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Label  IsVisible="{Binding nextHash,Converter={StaticResource NullOrEmptyBooleanConverter}}" >
+                <Label  IsVisible="{Binding nextHash,Converter={StaticResource NullOrEmptyBooleanConverter}}"  LineBreakMode="TailTruncation">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="Next Block " />
