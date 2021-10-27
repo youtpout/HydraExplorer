@@ -20,7 +20,7 @@
                     <StackLayout >
                         <StackLayout Orientation="Horizontal" HeightRequest="40">
                             <Label  Text="{Binding SearchType}" VerticalOptions="Center" VerticalTextAlignment="Center" />
-                            <Label   VerticalOptions="Center" >
+                            <Label   VerticalOptions="Center" LineBreakMode="TailTruncation">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <helpers:HyperlinkSpan  Text="{Binding Value}"  Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},Path=BindingContext.SelectCommand}" CommandParameter="{Binding}" ></helpers:HyperlinkSpan>

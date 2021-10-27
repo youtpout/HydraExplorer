@@ -11,13 +11,17 @@ namespace HydraExplorer.Services
     {
         HttpClient client;
 
-        string urlApi = "https://explorer.hydrachain.org/api/";
+        public static bool isTestNet = false;
+
+        string urlApi = $"https://explorer.hydrachain.org/api/";
+        string urlApiTest = $"https://testexplorer.hydrachain.org/api/";
 
         public event EventHandler<bool> Loading;
 
         public ApiService()
         {
             client = new HttpClient();
+
         }
 
         public async Task<Info> GetInfo()
@@ -53,7 +57,7 @@ namespace HydraExplorer.Services
         private async Task<T> GetCall<T>(string getUrl)
         {
             this.ApiCalling();
-            var url = $"{urlApi}{getUrl}";
+            var url = $"{ (isTestNet ? urlApiTest : urlApi)}{getUrl}";
             HttpResponseMessage response = await client.GetAsync(url);
             if (response.IsSuccessStatusCode)
             {

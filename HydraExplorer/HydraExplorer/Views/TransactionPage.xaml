@@ -41,6 +41,23 @@
                 <Label Text="{Binding confirmations,StringFormat='Confirmations {0}'}"></Label>
                 <Label Text="{Binding feesHydra,StringFormat='Transaction Fee {0:n} Hydra'}"></Label>
             </StackLayout>
+            <CollectionView ItemsSource="{Binding Blocks}" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label  Text="{Binding height, StringFormat='Block #{0}'}" />
+                            <Label  Text="{Binding miner,StringFormat='Mined by {0} '}" />
+                            <StackLayout Orientation="Horizontal">
+                                <Label  Text="{Binding transactionCount,StringFormat='{0} transactions'}" />
+                                <Label  Text="{Binding interval,StringFormat='in {0} secs'}" />
+                            </StackLayout>
+                            <Label Text="{Binding rewardHydra,StringFormat='Block reward {0} HYDRA'}" />
+                            <BoxView HeightRequest="1"     BackgroundColor="LightGray"    VerticalOptions="End"/>
+
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

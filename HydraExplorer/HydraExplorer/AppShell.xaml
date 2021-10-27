@@ -104,4 +104,17 @@
         <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
     </FlyoutItem>
 
+
+
+
+
+    <Shell.FlyoutFooter>
+        <StackLayout Orientation="Horizontal" Padding="20">
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnMenuItemClicked"></TapGestureRecognizer>
+            </StackLayout.GestureRecognizers>
+            <Label FontFamily="FA-Solid" FontSize="Large" TextColor="{StaticResource Primary}" VerticalTextAlignment="Center" Text="{x:Static fontAwesome:FontAwesomeIcons.Cog}"></Label>
+            <Label  VerticalTextAlignment="Center"  FontSize="Large" FontAttributes="Bold" TextColor="{StaticResource Primary}"  Text="{Binding ExplorerSelected}" ></Label>
+        </StackLayout>
+    </Shell.FlyoutFooter>
 </Shell>
