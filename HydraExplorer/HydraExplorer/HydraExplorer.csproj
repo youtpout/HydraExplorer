@@ -12,6 +12,7 @@
     <None Remove="Helpers\" />
     <None Remove="Resources\Images\" />
     <None Remove="Resources\Images\logo-hydra.png" />
+    <None Remove="Resources\Images\logo.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +20,7 @@
     <EmbeddedResource Include="Resources\Fonts\FA-Regular-400.otf" />
     <EmbeddedResource Include="Resources\Fonts\FA-Solid-900.otf" />
     <EmbeddedResource Include="Resources\Images\logo-hydra.png" />
+    <EmbeddedResource Include="Resources\Images\logo.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,8 +44,5 @@
     <EmbeddedResource Update="Views\TransactionPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\Images\" />
   </ItemGroup>
 </Project>

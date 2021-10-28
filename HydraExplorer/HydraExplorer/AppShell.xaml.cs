@@ -62,7 +62,12 @@ namespace HydraExplorer
             Preferences.Set(keyTestnet, toggle);
             this.ExplorerSelected = toggle ? "TestNet" : "MainNet";
             ApiService.isTestNet = toggle;
-            //await Current.GoToAsync("//HomePage");
+            BaseViewModel vm = Current.CurrentPage.BindingContext as BaseViewModel;
+            if (vm != null)
+            {
+                // reload data
+                vm.LoadCommand.Execute(null);
+            }
         }
 
         protected override void OnNavigated(ShellNavigatedEventArgs args)
